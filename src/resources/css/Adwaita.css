@@ -1,0 +1,187 @@
+.nautilus-window,
+.nautilus-window notebook,
+.nautilus-window notebook > stack {
+    background: @theme_base_color;
+}
+
+.nautilus-canvas-item {
+    border-radius: 5px;
+}
+
+.nautilus-canvas-item.dim-label,
+.nautilus-list-dim-label {
+    color: mix (@theme_fg_color, @theme_bg_color, 0.50);
+}
+
+.nautilus-canvas-item.dim-label:selected,
+.nautilus-list-dim-label:selected {
+    color: mix (@theme_selected_fg_color, @theme_selected_bg_color, 0.20);
+}
+
+.nautilus-desktop.nautilus-canvas-item {
+    color: @theme_selected_fg_color;
+    text-shadow: 1px 1px black;
+}
+
+.nautilus-desktop.nautilus-canvas-item:active {
+    color: @theme_text_color;
+}
+
+.nautilus-desktop.nautilus-canvas-item:selected {
+    color: @theme_selected_fg_color;
+}
+
+.nautilus-desktop.nautilus-canvas-item:active,
+.nautilus-desktop.nautilus-canvas-item:hover,
+.nautilus-desktop.nautilus-canvas-item:selected {
+    text-shadow: none;
+}
+
+.nautilus-desktop.nautilus-canvas-item:selected:backdrop {
+    color: @theme_unfocused_selected_fg_color;
+}
+
+/* Toolbar */
+
+/* Here we use the .button background-image colors from Adwaita, but ligthen them,
+ * since is not possible to use lighten () in common css. */
+@keyframes needs_attention_keyframes {
+    0% {background-image: linear-gradient(to bottom, #fafafa, #ededed 40%,  #e0e0e0); border-color: @borders; }
+    /* can't do animation-direction, so holding the color on two keyframes */
+    30% {background-image: linear-gradient(to bottom, @theme_base_color, @theme_base_color, @theme_base_color); border-color: @theme_fg_color; }
+    90% {background-image: linear-gradient(to bottom, @theme_base_color, @theme_base_color, @theme_base_color); border-color: @theme_fg_color; }
+    100% {background-image: linear-gradient(to bottom, #fafafa, #ededed 40%,  #e0e0e0); border-color: @borders; }
+}
+
+.nautilus-operations-button-needs-attention {
+  animation: needs_attention_keyframes 2s ease-in-out;
+}
+.nautilus-operations-button-needs-attention-multiple {
+  animation: needs_attention_keyframes 3s ease-in-out;
+  animation-iteration-count: 3;
+}
+
+/* Floating status bar */
+.floating-bar {
+  padding: 1px;
+  background-color: @theme_base_color;
+  border-width: 1px;
+  border-style: solid solid none;
+  border-color: @borders;
+  border-radius: 3px 3px 0 0;
+}
+
+.floating-bar.bottom.left { /* axes left border and border radius */
+  border-left-style: none;
+  border-top-left-radius: 0;
+}
+.floating-bar.bottom.right { /* axes right border and border radius */
+  border-right-style: none;
+  border-top-right-radius: 0;
+}
+
+.floating-bar:backdrop {
+  background-color: @theme_unfocused_base_color;
+  border-color: @unfocused_borders;
+}
+
+.floating-bar button {
+  padding: 0px;
+}
+
+.search-bar {
+    box-shadow: none;
+}
+
+@define-color disk_space_unknown #888a85;
+@define-color disk_space_used #729fcf;
+@define-color disk_space_free #eeeeec;
+
+.disk-space-display {
+    border-style: solid;
+    border-width: 2px;
+}
+
+.disk-space-display.unknown {
+    background-color: @disk_space_unknown;
+    border-color: shade(@disk_space_unknown, 0.7);
+}
+
+.disk-space-display.used {
+    background-color: @disk_space_used;
+    border-color: shade(@disk_space_used, 0.7);
+}
+
+.disk-space-display.free {
+    background-color: @disk_space_free;
+    border-color: shade(@disk_space_free, 0.7);
+}
+
+/* View */
+.nautilus-list-view .view {
+    border-bottom: 1px solid @theme_bg_color;
+}
+
+/* Hide superfluous treeview drop target indication */
+.nautilus-list-view .view.dnd {
+    border-style: none;
+}
+
+/* Libgd tag entries in the search. Sadly it requires this copy pasted css style.
+ * https://git.gnome.org/browse/libgd/tree/libgd/gd-tagged-entry-default.css
+ */
+@define-color entry_tag_bg #3465a4;
+@define-color entry_tag_fg #ffffff;
+
+.documents-entry-tag {
+    background-image: none;
+    background-color: @entry_tag_bg;
+    color: @entry_tag_fg;
+
+    border-radius: 4px;
+    border-width: 0;
+
+    margin: 2px;
+    padding: 4px;
+}
+
+.documents-entry-tag:hover {
+    background-color: shade(@entry_tag_bg, 1.10);
+    color: @entry_tag_fg;
+}
+
+.documents-entry-tag.button,
+.documents-entry-tag.button:hover,
+.documents-entry-tag.button:active,
+.documents-entry-tag.button:active:hover {
+    background-color: transparent;
+    background-image: none;
+    box-shadow: none;
+    border-image: none;
+    border-width: 0;
+}
+
+.documents-entry-tag.button:hover {
+    color: shade(@entry_tag_bg, 2.10);
+}
+
+/* Workaround for the double border of the searchbar since we use a revealer which
+ * always allocates at least 1 pixel */
+searchbar { border-top: 1px solid @borders; }
+.searchbar-container { margin-top: -1px; }
+
+@define-color conflict_bg #fef6b6;
+
+.conflict-row {
+    background: @conflict_bg;
+    color: black;
+}
+
+.conflict-row:hover {
+    background-color: shade(@conflict_bg, 0.9);
+}
+
+.conflict-row:selected {
+  background: @theme_selected_bg_color;
+  color: @theme_selected_fg_color;
+}

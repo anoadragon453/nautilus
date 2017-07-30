@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<book xmlns="http://www.devhelp.net/book" title="Nautilus Extension Reference Manual" link="index.html" author="" name="libnautilus-extension" version="2" language="c">
+  <chapters>
+    <sub name="API Reference" link="pt01.html">
+      <sub name="Extension Interfaces" link="ch01.html">
+        <sub name="NautilusColumnProvider" link="NautilusColumnProvider.html"/>
+        <sub name="NautilusColumn" link="NautilusColumn.html"/>
+        <sub name="NautilusModule" link="libnautilus-extension-NautilusModule.html"/>
+        <sub name="NautilusFileInfo" link="NautilusFileInfo.html"/>
+        <sub name="NautilusInfoProvider" link="NautilusInfoProvider.html"/>
+        <sub name="NautilusLocationWidgetProvider" link="NautilusLocationWidgetProvider.html"/>
+        <sub name="NautilusMenuProvider" link="NautilusMenuProvider.html"/>
+        <sub name="NautilusMenu" link="NautilusMenu.html"/>
+        <sub name="NautilusMenuItem" link="NautilusMenuItem.html"/>
+        <sub name="NautilusPropertyPageProvider" link="NautilusPropertyPageProvider.html"/>
+        <sub name="NautilusPropertyPage" link="NautilusPropertyPage.html"/>
+      </sub>
+    </sub>
+    <sub name="Index" link="ix01.html"/>
+  </chapters>
+  <functions>
+    <keyword type="function" name="nautilus_column_provider_get_columns ()" link="NautilusColumnProvider.html#nautilus-column-provider-get-columns"/>
+    <keyword type="struct" name="NautilusColumnProvider" link="NautilusColumnProvider.html#NautilusColumnProvider-struct"/>
+    <keyword type="struct" name="struct NautilusColumnProviderIface" link="NautilusColumnProvider.html#NautilusColumnProviderIface"/>
+    <keyword type="function" name="nautilus_column_new ()" link="NautilusColumn.html#nautilus-column-new"/>
+    <keyword type="struct" name="struct NautilusColumn" link="NautilusColumn.html#NautilusColumn-struct"/>
+    <keyword type="property" name="The “attribute” property" link="NautilusColumn.html#NautilusColumn--attribute"/>
+    <keyword type="property" name="The “attribute-q” property" link="NautilusColumn.html#NautilusColumn--attribute-q"/>
+    <keyword type="property" name="The “default-sort-order” property" link="NautilusColumn.html#NautilusColumn--default-sort-order"/>
+    <keyword type="property" name="The “description” property" link="NautilusColumn.html#NautilusColumn--description"/>
+    <keyword type="property" name="The “label” property" link="NautilusColumn.html#NautilusColumn--label"/>
+    <keyword type="property" name="The “name” property" link="NautilusColumn.html#NautilusColumn--name"/>
+    <keyword type="property" name="The “xalign” property" link="NautilusColumn.html#NautilusColumn--xalign"/>
+    <keyword type="function" name="nautilus_module_initialize ()" link="libnautilus-extension-NautilusModule.html#nautilus-module-initialize"/>
+    <keyword type="function" name="nautilus_module_shutdown ()" link="libnautilus-extension-NautilusModule.html#nautilus-module-shutdown"/>
+    <keyword type="function" name="nautilus_module_list_types ()" link="libnautilus-extension-NautilusModule.html#nautilus-module-list-types"/>
+    <keyword type="function" name="nautilus_file_info_create ()" link="NautilusFileInfo.html#nautilus-file-info-create"/>
+    <keyword type="function" name="nautilus_file_info_create_for_uri ()" link="NautilusFileInfo.html#nautilus-file-info-create-for-uri"/>
+    <keyword type="function" name="nautilus_file_info_lookup ()" link="NautilusFileInfo.html#nautilus-file-info-lookup"/>
+    <keyword type="function" name="nautilus_file_info_lookup_for_uri ()" link="NautilusFileInfo.html#nautilus-file-info-lookup-for-uri"/>
+    <keyword type="function" name="nautilus_file_info_list_copy ()" link="NautilusFileInfo.html#nautilus-file-info-list-copy"/>
+    <keyword type="function" name="nautilus_file_info_list_free ()" link="NautilusFileInfo.html#nautilus-file-info-list-free"/>
+    <keyword type="function" name="nautilus_file_info_is_gone ()" link="NautilusFileInfo.html#nautilus-file-info-is-gone"/>
+    <keyword type="function" name="nautilus_file_info_get_file_type ()" link="NautilusFileInfo.html#nautilus-file-info-get-file-type"/>
+    <keyword type="function" name="nautilus_file_info_get_location ()" link="NautilusFileInfo.html#nautilus-file-info-get-location"/>
+    <keyword type="function" name="nautilus_file_info_get_name ()" link="NautilusFileInfo.html#nautilus-file-info-get-name"/>
+    <keyword type="function" name="nautilus_file_info_get_uri ()" link="NautilusFileInfo.html#nautilus-file-info-get-uri"/>
+    <keyword type="function" name="nautilus_file_info_get_activation_uri ()" link="NautilusFileInfo.html#nautilus-file-info-get-activation-uri"/>
+    <keyword type="function" name="nautilus_file_info_get_parent_location ()" link="NautilusFileInfo.html#nautilus-file-info-get-parent-location"/>
+    <keyword type="function" name="nautilus_file_info_get_parent_uri ()" link="NautilusFileInfo.html#nautilus-file-info-get-parent-uri"/>
+    <keyword type="function" name="nautilus_file_info_get_mount ()" link="NautilusFileInfo.html#nautilus-file-info-get-mount"/>
+    <keyword type="function" name="nautilus_file_info_get_uri_scheme ()" link="NautilusFileInfo.html#nautilus-file-info-get-uri-scheme"/>
+    <keyword type="function" name="nautilus_file_info_get_parent_info ()" link="NautilusFileInfo.html#nautilus-file-info-get-parent-info"/>
+    <keyword type="function" name="nautilus_file_info_get_mime_type ()" link="NautilusFileInfo.html#nautilus-file-info-get-mime-type"/>
+    <keyword type="function" name="nautilus_file_info_is_mime_type ()" link="NautilusFileInfo.html#nautilus-file-info-is-mime-type"/>
+    <keyword type="function" name="nautilus_file_info_is_directory ()" link="NautilusFileInfo.html#nautilus-file-info-is-directory"/>
+    <keyword type="function" name="nautilus_file_info_can_write ()" link="NautilusFileInfo.html#nautilus-file-info-can-write"/>
+    <keyword type="function" name="nautilus_file_info_add_emblem ()" link="NautilusFileInfo.html#nautilus-file-info-add-emblem"/>
+    <keyword type="function" name="nautilus_file_info_get_string_attribute ()" link="NautilusFileInfo.html#nautilus-file-info-get-string-attribute"/>
+    <keyword type="function" name="nautilus_file_info_add_string_attribute ()" link="NautilusFileInfo.html#nautilus-file-info-add-string-attribute"/>
+    <keyword type="function" name="nautilus_file_info_invalidate_extension_info ()" link="NautilusFileInfo.html#nautilus-file-info-invalidate-extension-info"/>
+    <keyword type="macro" name="NAUTILUS_FILE_DEFINED" link="NautilusFileInfo.html#NAUTILUS-FILE-DEFINED:CAPS"/>
+    <keyword type="typedef" name="NautilusFile" link="NautilusFileInfo.html#NautilusFile"/>
+    <keyword type="typedef" name="NautilusFileInfo" link="NautilusFileInfo.html#NautilusFileInfo"/>
+    <keyword type="struct" name="struct NautilusFileInfoIface" link="NautilusFileInfo.html#NautilusFileInfoIface"/>
+    <keyword type="function" name="NautilusInfoProviderUpdateComplete ()" link="NautilusInfoProvider.html#NautilusInfoProviderUpdateComplete"/>
+    <keyword type="function" name="nautilus_info_provider_update_file_info ()" link="NautilusInfoProvider.html#nautilus-info-provider-update-file-info"/>
+    <keyword type="function" name="nautilus_info_provider_cancel_update ()" link="NautilusInfoProvider.html#nautilus-info-provider-cancel-update"/>
+    <keyword type="function" name="nautilus_info_provider_update_complete_invoke ()" link="NautilusInfoProvider.html#nautilus-info-provider-update-complete-invoke"/>
+    <keyword type="struct" name="NautilusInfoProvider" link="NautilusInfoProvider.html#NautilusInfoProvider-struct"/>
+    <keyword type="struct" name="struct NautilusInfoProviderIface" link="NautilusInfoProvider.html#NautilusInfoProviderIface"/>
+    <keyword type="struct" name="NautilusOperationHandle" link="NautilusInfoProvider.html#NautilusOperationHandle"/>
+    <keyword type="enum" name="enum NautilusOperationResult" link="NautilusInfoProvider.html#NautilusOperationResult"/>
+    <keyword type="function" name="nautilus_location_widget_provider_get_widget ()" link="NautilusLocationWidgetProvider.html#nautilus-location-widget-provider-get-widget"/>
+    <keyword type="struct" name="NautilusLocationWidgetProvider" link="NautilusLocationWidgetProvider.html#NautilusLocationWidgetProvider-struct"/>
+    <keyword type="struct" name="struct NautilusLocationWidgetProviderIface" link="NautilusLocationWidgetProvider.html#NautilusLocationWidgetProviderIface"/>
+    <keyword type="function" name="nautilus_menu_provider_get_file_items ()" link="NautilusMenuProvider.html#nautilus-menu-provider-get-file-items"/>
+    <keyword type="function" name="nautilus_menu_provider_get_background_items ()" link="NautilusMenuProvider.html#nautilus-menu-provider-get-background-items"/>
+    <keyword type="function" name="nautilus_menu_provider_emit_items_updated_signal ()" link="NautilusMenuProvider.html#nautilus-menu-provider-emit-items-updated-signal"/>
+    <keyword type="struct" name="NautilusMenuProvider" link="NautilusMenuProvider.html#NautilusMenuProvider-struct"/>
+    <keyword type="struct" name="struct NautilusMenuProviderIface" link="NautilusMenuProvider.html#NautilusMenuProviderIface"/>
+    <keyword type="signal" name="The “items-updated” signal" link="NautilusMenuProvider.html#NautilusMenuProvider-items-updated"/>
+    <keyword type="function" name="nautilus_menu_new ()" link="NautilusMenu.html#nautilus-menu-new"/>
+    <keyword type="function" name="nautilus_menu_append_item ()" link="NautilusMenu.html#nautilus-menu-append-item"/>
+    <keyword type="function" name="nautilus_menu_get_items ()" link="NautilusMenu.html#nautilus-menu-get-items"/>
+    <keyword type="struct" name="NautilusMenuPrivate" link="NautilusMenu.html#NautilusMenuPrivate"/>
+    <keyword type="struct" name="struct NautilusMenu" link="NautilusMenu.html#NautilusMenu-struct"/>
+    <keyword type="function" name="nautilus_menu_item_list_free ()" link="NautilusMenuItem.html#nautilus-menu-item-list-free"/>
+    <keyword type="function" name="nautilus_menu_item_get_type ()" link="NautilusMenuItem.html#nautilus-menu-item-get-type"/>
+    <keyword type="function" name="nautilus_menu_item_new ()" link="NautilusMenuItem.html#nautilus-menu-item-new"/>
+    <keyword type="function" name="nautilus_menu_item_activate ()" link="NautilusMenuItem.html#nautilus-menu-item-activate"/>
+    <keyword type="function" name="nautilus_menu_item_set_submenu ()" link="NautilusMenuItem.html#nautilus-menu-item-set-submenu"/>
+    <keyword type="struct" name="struct NautilusMenuItem" link="NautilusMenuItem.html#NautilusMenuItem-struct"/>
+    <keyword type="property" name="The “icon” property" link="NautilusMenuItem.html#NautilusMenuItem--icon"/>
+    <keyword type="property" name="The “label” property" link="NautilusMenuItem.html#NautilusMenuItem--label"/>
+    <keyword type="property" name="The “menu” property" link="NautilusMenuItem.html#NautilusMenuItem--menu"/>
+    <keyword type="property" name="The “name” property" link="NautilusMenuItem.html#NautilusMenuItem--name"/>
+    <keyword type="property" name="The “priority” property" link="NautilusMenuItem.html#NautilusMenuItem--priority"/>
+    <keyword type="property" name="The “sensitive” property" link="NautilusMenuItem.html#NautilusMenuItem--sensitive"/>
+    <keyword type="property" name="The “tip” property" link="NautilusMenuItem.html#NautilusMenuItem--tip"/>
+    <keyword type="signal" name="The “activate” signal" link="NautilusMenuItem.html#NautilusMenuItem-activate"/>
+    <keyword type="function" name="nautilus_property_page_provider_get_pages ()" link="NautilusPropertyPageProvider.html#nautilus-property-page-provider-get-pages"/>
+    <keyword type="struct" name="NautilusPropertyPageProvider" link="NautilusPropertyPageProvider.html#NautilusPropertyPageProvider-struct"/>
+    <keyword type="struct" name="struct NautilusPropertyPageProviderIface" link="NautilusPropertyPageProvider.html#NautilusPropertyPageProviderIface"/>
+    <keyword type="function" name="nautilus_property_page_new ()" link="NautilusPropertyPage.html#nautilus-property-page-new"/>
+    <keyword type="struct" name="struct NautilusPropertyPage" link="NautilusPropertyPage.html#NautilusPropertyPage-struct"/>
+    <keyword type="property" name="The “label” property" link="NautilusPropertyPage.html#NautilusPropertyPage--label"/>
+    <keyword type="property" name="The “name” property" link="NautilusPropertyPage.html#NautilusPropertyPage--name"/>
+    <keyword type="property" name="The “page” property" link="NautilusPropertyPage.html#NautilusPropertyPage--page"/>
+    <keyword type="constant" name="NAUTILUS_OPERATION_COMPLETE" link="NautilusInfoProvider.html#NAUTILUS-OPERATION-COMPLETE:CAPS"/>
+    <keyword type="constant" name="NAUTILUS_OPERATION_FAILED" link="NautilusInfoProvider.html#NAUTILUS-OPERATION-FAILED:CAPS"/>
+    <keyword type="constant" name="NAUTILUS_OPERATION_IN_PROGRESS" link="NautilusInfoProvider.html#NAUTILUS-OPERATION-IN-PROGRESS:CAPS"/>
+    <keyword type="member" name="NautilusColumnProviderIface.get-columns" link="NautilusColumnProvider.html#NautilusColumnProviderIface.get-columns"/>
+    <keyword type="member" name="NautilusFileInfoIface.is-gone" link="NautilusFileInfo.html#NautilusFileInfoIface.is-gone"/>
+    <keyword type="member" name="NautilusFileInfoIface.get-name" link="NautilusFileInfo.html#NautilusFileInfoIface.get-name"/>
+    <keyword type="member" name="NautilusFileInfoIface.get-uri" link="NautilusFileInfo.html#NautilusFileInfoIface.get-uri"/>
+    <keyword type="member" name="NautilusFileInfoIface.get-parent-uri" link="NautilusFileInfo.html#NautilusFileInfoIface.get-parent-uri"/>
+    <keyword type="member" name="NautilusFileInfoIface.get-uri-scheme" link="NautilusFileInfo.html#NautilusFileInfoIface.get-uri-scheme"/>
+    <keyword type="member" name="NautilusFileInfoIface.get-mime-type" link="NautilusFileInfo.html#NautilusFileInfoIface.get-mime-type"/>
+    <keyword type="member" name="NautilusFileInfoIface.is-mime-type" link="NautilusFileInfo.html#NautilusFileInfoIface.is-mime-type"/>
+    <keyword type="member" name="NautilusFileInfoIface.is-directory" link="NautilusFileInfo.html#NautilusFileInfoIface.is-directory"/>
+    <keyword type="member" name="NautilusFileInfoIface.add-emblem" link="NautilusFileInfo.html#NautilusFileInfoIface.add-emblem"/>
+    <keyword type="member" name="NautilusFileInfoIface.get-string-attribute" link="NautilusFileInfo.html#NautilusFileInfoIface.get-string-attribute"/>
+    <keyword type="member" name="NautilusFileInfoIface.add-string-attribute" link="NautilusFileInfo.html#NautilusFileInfoIface.add-string-attribute"/>
+    <keyword type="member" name="NautilusFileInfoIface.invalidate-extension-info" link="NautilusFileInfo.html#NautilusFileInfoIface.invalidate-extension-info"/>
+    <keyword type="member" name="NautilusFileInfoIface.get-activation-uri" link="NautilusFileInfo.html#NautilusFileInfoIface.get-activation-uri"/>
+    <keyword type="member" name="NautilusFileInfoIface.get-file-type" link="NautilusFileInfo.html#NautilusFileInfoIface.get-file-type"/>
+    <keyword type="member" name="NautilusFileInfoIface.get-location" link="NautilusFileInfo.html#NautilusFileInfoIface.get-location"/>
+    <keyword type="member" name="NautilusFileInfoIface.get-parent-location" link="NautilusFileInfo.html#NautilusFileInfoIface.get-parent-location"/>
+    <keyword type="member" name="NautilusFileInfoIface.get-parent-info" link="NautilusFileInfo.html#NautilusFileInfoIface.get-parent-info"/>
+    <keyword type="member" name="NautilusFileInfoIface.get-mount" link="NautilusFileInfo.html#NautilusFileInfoIface.get-mount"/>
+    <keyword type="member" name="NautilusFileInfoIface.can-write" link="NautilusFileInfo.html#NautilusFileInfoIface.can-write"/>
+    <keyword type="member" name="NautilusInfoProviderIface.update-file-info" link="NautilusInfoProvider.html#NautilusInfoProviderIface.update-file-info"/>
+    <keyword type="member" name="NautilusInfoProviderIface.cancel-update" link="NautilusInfoProvider.html#NautilusInfoProviderIface.cancel-update"/>
+    <keyword type="member" name="NautilusLocationWidgetProviderIface.get-widget" link="NautilusLocationWidgetProvider.html#NautilusLocationWidgetProviderIface.get-widget"/>
+    <keyword type="member" name="NautilusMenuProviderIface.get-file-items" link="NautilusMenuProvider.html#NautilusMenuProviderIface.get-file-items"/>
+    <keyword type="member" name="NautilusMenuProviderIface.get-background-items" link="NautilusMenuProvider.html#NautilusMenuProviderIface.get-background-items"/>
+    <keyword type="member" name="NautilusPropertyPageProviderIface.get-pages" link="NautilusPropertyPageProvider.html#NautilusPropertyPageProviderIface.get-pages"/>
+  </functions>
+</book>

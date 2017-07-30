@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>NautilusMenu: Nautilus Extension Reference Manual</title>
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Nautilus Extension Reference Manual">
+<link rel="up" href="ch01.html" title="Extension Interfaces">
+<link rel="prev" href="NautilusMenuProvider.html" title="NautilusMenuProvider">
+<link rel="next" href="NautilusMenuItem.html" title="NautilusMenuItem">
+<meta name="generator" content="GTK-Doc V1.25.1 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="5"><tr valign="middle">
+<td width="100%" align="left" class="shortcuts">
+<a href="#" class="shortcut">Top</a><span id="nav_description">  <span class="dim">|</span> 
+                  <a href="#NautilusMenu.description" class="shortcut">Description</a></span><span id="nav_hierarchy">  <span class="dim">|</span> 
+                  <a href="#NautilusMenu.object-hierarchy" class="shortcut">Object Hierarchy</a></span>
+</td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
+<td><a accesskey="p" href="NautilusMenuProvider.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
+<td><a accesskey="n" href="NautilusMenuItem.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
+</tr></table>
+<div class="refentry">
+<a name="NautilusMenu"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="NautilusMenu.top_of_page"></a>NautilusMenu</span></h2>
+<p>NautilusMenu — Menu descriptor object</p>
+</td>
+<td class="gallery_image" valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsect1">
+<a name="NautilusMenu.functions"></a><h2>Functions</h2>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="functions_return">
+<col class="functions_name">
+</colgroup>
+<tbody>
+<tr>
+<td class="function_type">
+<a class="link" href="NautilusMenu.html" title="NautilusMenu"><span class="returnvalue">NautilusMenu</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="NautilusMenu.html#nautilus-menu-new" title="nautilus_menu_new ()">nautilus_menu_new</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="NautilusMenu.html#nautilus-menu-append-item" title="nautilus_menu_append_item ()">nautilus_menu_append_item</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">GList</span> *
+</td>
+<td class="function_name">
+<a class="link" href="NautilusMenu.html#nautilus-menu-get-items" title="nautilus_menu_get_items ()">nautilus_menu_get_items</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="NautilusMenu.other"></a><h2>Types and Values</h2>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="name">
+<col class="description">
+</colgroup>
+<tbody>
+<tr>
+<td class="datatype_keyword"> </td>
+<td class="function_name"><a class="link" href="NautilusMenu.html#NautilusMenuPrivate" title="NautilusMenuPrivate">NautilusMenuPrivate</a></td>
+</tr>
+<tr>
+<td class="datatype_keyword">struct</td>
+<td class="function_name"><a class="link" href="NautilusMenu.html#NautilusMenu-struct" title="struct NautilusMenu">NautilusMenu</a></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="NautilusMenu.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="screen">    GObject
+    <span class="lineart">╰──</span> NautilusMenu
+</pre>
+</div>
+<div class="refsect1">
+<a name="NautilusMenu.includes"></a><h2>Includes</h2>
+<pre class="synopsis">#include &lt;libnautilus-extension/nautilus-menu.h&gt;
+</pre>
+</div>
+<div class="refsect1">
+<a name="NautilusMenu.description"></a><h2>Description</h2>
+<p><a class="link" href="NautilusMenu.html" title="NautilusMenu"><span class="type">NautilusMenu</span></a> is an object that describes a submenu in a file manager
+menu. Extensions can provide <a class="link" href="NautilusMenu.html" title="NautilusMenu"><span class="type">NautilusMenu</span></a> objects by attaching them to
+<a class="link" href="NautilusMenuItem.html" title="NautilusMenuItem"><span class="type">NautilusMenuItem</span></a> objects, using <a class="link" href="NautilusMenuItem.html#nautilus-menu-item-set-submenu" title="nautilus_menu_item_set_submenu ()"><code class="function">nautilus_menu_item_set_submenu()</code></a>.</p>
+</div>
+<div class="refsect1">
+<a name="NautilusMenu.functions_details"></a><h2>Functions</h2>
+<div class="refsect2">
+<a name="nautilus-menu-new"></a><h3>nautilus_menu_new ()</h3>
+<pre class="programlisting"><a class="link" href="NautilusMenu.html" title="NautilusMenu"><span class="returnvalue">NautilusMenu</span></a> *
+nautilus_menu_new (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="nautilus-menu-append-item"></a><h3>nautilus_menu_append_item ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+nautilus_menu_append_item (<em class="parameter"><code><a class="link" href="NautilusMenu.html" title="NautilusMenu"><span class="type">NautilusMenu</span></a> *menu</code></em>,
+                           <em class="parameter"><code><a class="link" href="NautilusMenuItem.html" title="NautilusMenuItem"><span class="type">NautilusMenuItem</span></a> *item</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="nautilus-menu-get-items"></a><h3>nautilus_menu_get_items ()</h3>
+<pre class="programlisting"><span class="returnvalue">GList</span> *
+nautilus_menu_get_items (<em class="parameter"><code><a class="link" href="NautilusMenu.html" title="NautilusMenu"><span class="type">NautilusMenu</span></a> *menu</code></em>);</pre>
+<div class="refsect3">
+<a name="nautilus-menu-get-items.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>menu</p></td>
+<td class="parameter_description"><p>a <a class="link" href="NautilusMenu.html" title="NautilusMenu"><span class="type">NautilusMenu</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="nautilus-menu-get-items.returns"></a><h4>Returns</h4>
+<p> the provided <a class="link" href="NautilusMenuItem.html" title="NautilusMenuItem"><span class="type">NautilusMenuItem</span></a> list. </p>
+<p><span class="annotation">[<a href="http://foldoc.org/element-type"><span class="acronym">element-type</span></a> NautilusMenuItem][<a href="http://foldoc.org/transfer%20full"><span class="acronym">transfer full</span></a>]</span></p>
+</div>
+</div>
+</div>
+<div class="refsect1">
+<a name="NautilusMenu.other_details"></a><h2>Types and Values</h2>
+<div class="refsect2">
+<a name="NautilusMenuPrivate"></a><h3>NautilusMenuPrivate</h3>
+<pre class="programlisting">typedef struct _NautilusMenuPrivate NautilusMenuPrivate;</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="NautilusMenu-struct"></a><h3>struct NautilusMenu</h3>
+<pre class="programlisting">struct NautilusMenu;</pre>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>Generated by GTK-Doc V1.25.1</div>
+</body>
+</html>

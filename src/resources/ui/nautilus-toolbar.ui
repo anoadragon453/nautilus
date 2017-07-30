@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <!-- interface-requires gtk+ 3.8 -->
+  <template class="NautilusToolbar" parent="GtkHeaderBar">
+    <property name="visible">True</property>
+    <property name="show-close-button">True</property>
+    <child>
+      <object class="GtkBox" id="navigation_box">
+        <property name="visible">True</property>
+        <property name="orientation">horizontal</property>
+        <style>
+          <class name="linked"/>
+          <class name="raised"/>
+        </style>
+        <child>
+          <object class="GtkButton" id="back_button">
+            <property name="visible">True</property>
+            <property name="sensitive">True</property>
+            <property name="action_name">win.back</property>
+            <style>
+              <class name="image-button"/>
+            </style>
+            <child>
+              <object class="GtkImage" id="back_icon">
+                <property name="visible">True</property>
+                <property name="icon-name">go-previous-symbolic</property>
+                <property name="icon-size">1</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="pack-type">start</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="forward_button">
+            <property name="visible">True</property>
+            <property name="sensitive">True</property>
+            <property name="action_name">win.forward</property>
+            <style>
+              <class name="image-button"/>
+            </style>
+            <child>
+              <object class="GtkImage" id="forward_icon">
+                <property name="visible">True</property>
+                <property name="icon-name">go-next-symbolic</property>
+                <property name="icon-size">1</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="pack-type">start</property>
+          </packing>
+        </child>
+      </object>
+      <packing>
+        <property name="pack-type">start</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkBox" id="path_bar_container">
+      </object>
+      <packing>
+          <property name="pack-type">start</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkBox" id="location_entry_container">
+      </object>
+      <packing>
+        <property name="pack-type">start</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkMenuButton" id="view_button">
+        <property name="visible">True</property>
+        <property name="sensitive">True</property>
+        <property name="action_name">win.view-menu</property>
+        <!-- Popover defined in nautilus-toolbar-menu.ui -->
+        <style>
+          <class name="image-button"/>
+        </style>
+        <child>
+          <object class="GtkImage">
+            <property name="visible">True</property>
+            <property name="icon-name">open-menu-symbolic</property>
+            <property name="icon-size">1</property>
+          </object>
+        </child>
+        <child internal-child="accessible">
+          <object class="AtkObject">
+            <property name="accessible-name" translatable="yes">Action menu</property>
+            <property name="accessible-description" translatable="yes">Open action menu</property>
+          </object>
+        </child>
+      </object>
+      <packing>
+        <property name="pack-type">end</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkButton" id="view_toggle_button">
+        <property name="visible">True</property>
+        <property name="sensitive">True</property>
+        <property name="action_name">slot.files-view-mode-toggle</property>
+        <style>
+          <class name="image-button"/>
+        </style>
+        <child>
+          <object class="GtkImage" id="view_toggle_icon">
+            <property name="visible">True</property>
+            <property name="icon-size">1</property>
+          </object>
+        </child>
+        <child internal-child="accessible">
+          <object class="AtkObject">
+            <property name="accessible-name" translatable="yes">View mode toggle</property>
+            <property name="accessible-description" translatable="yes">Toggle between grid and list view</property>
+          </object>
+        </child>
+      </object>
+      <packing>
+        <property name="pack-type">end</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkToggleButton" id="search_button">
+        <property name="visible">True</property>
+        <property name="sensitive">True</property>
+        <property name="action_name">slot.search-visible</property>
+        <style>
+          <class name="image-button"/>
+        </style>
+        <child>
+          <object class="GtkImage" id="search_icon">
+            <property name="visible">True</property>
+            <property name="icon-name">edit-find-symbolic</property>
+            <property name="icon-size">1</property>
+          </object>
+        </child>
+        <child internal-child="accessible">
+          <object class="AtkObject">
+            <property name="accessible-name" translatable="yes">Search</property>
+            <property name="accessible-description" translatable="yes">Search files</property>
+          </object>
+        </child>
+      </object>
+      <packing>
+        <property name="pack-type">end</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkRevealer" id="operations_revealer">
+        <property name="visible">True</property>
+        <property name="transition-type">GTK_REVEALER_TRANSITION_TYPE_CROSSFADE</property>
+        <child>
+          <object class="GtkMenuButton" id="operations_button">
+            <property name="visible">False</property>
+            <property name="popover">operations_popover</property>
+            <signal name="toggled" handler="on_operations_button_toggled" object="NautilusToolbar" swapped="yes"/>
+            <style>
+              <class name="button"/>
+            </style>
+            <child>
+              <object class="GtkDrawingArea" id="operations_icon">
+                <property name="visible">True</property>
+                <property name="height-request">16</property>
+                <property name="width-request">16</property>
+                <property name="valign">GTK_ALIGN_CENTER</property>
+                <property name="halign">GTK_ALIGN_CENTER</property>
+                <signal name="draw" handler="on_operations_icon_draw" object="NautilusToolbar" swapped="no"/>
+              </object>
+            </child>
+            <child internal-child="accessible">
+              <object class="AtkObject">
+                <property name="accessible-name" translatable="yes">Operations in progress</property>
+                <property name="accessible-description" translatable="yes">Open operations in progress</property>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+      <packing>
+        <property name="pack-type">end</property>
+      </packing>
+    </child>
+  </template>
+  <object class="GtkPopover" id="operations_popover">
+    <child>
+      <object class="GtkScrolledWindow">
+        <property name="visible">True</property>
+        <property name="hscrollbar_policy">GTK_POLICY_NEVER</property>
+        <property name="max-content-height">270</property>
+        <property name="propagate-natural-height">True</property>
+        <child>
+          <object class="GtkBox" id="operations_container">
+            <property name="orientation">vertical</property>
+            <property name="visible">True</property>
+            <property name="margin">12</property>
+            <property name="spacing">10</property>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>

@@ -1,0 +1,279 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>NautilusMenuProvider: Nautilus Extension Reference Manual</title>
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Nautilus Extension Reference Manual">
+<link rel="up" href="ch01.html" title="Extension Interfaces">
+<link rel="prev" href="NautilusLocationWidgetProvider.html" title="NautilusLocationWidgetProvider">
+<link rel="next" href="NautilusMenu.html" title="NautilusMenu">
+<meta name="generator" content="GTK-Doc V1.25.1 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="5"><tr valign="middle">
+<td width="100%" align="left" class="shortcuts">
+<a href="#" class="shortcut">Top</a><span id="nav_description">  <span class="dim">|</span> 
+                  <a href="#NautilusMenuProvider.description" class="shortcut">Description</a></span><span id="nav_hierarchy">  <span class="dim">|</span> 
+                  <a href="#NautilusMenuProvider.object-hierarchy" class="shortcut">Object Hierarchy</a></span><span id="nav_prerequisites">  <span class="dim">|</span> 
+                  <a href="#NautilusMenuProvider.prerequisites" class="shortcut">Prerequisites</a></span><span id="nav_signals">  <span class="dim">|</span> 
+                  <a href="#NautilusMenuProvider.signals" class="shortcut">Signals</a></span>
+</td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
+<td><a accesskey="p" href="NautilusLocationWidgetProvider.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
+<td><a accesskey="n" href="NautilusMenu.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
+</tr></table>
+<div class="refentry">
+<a name="NautilusMenuProvider"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="NautilusMenuProvider.top_of_page"></a>NautilusMenuProvider</span></h2>
+<p>NautilusMenuProvider — Interface to provide additional menu items</p>
+</td>
+<td class="gallery_image" valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsect1">
+<a name="NautilusMenuProvider.functions"></a><h2>Functions</h2>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="functions_return">
+<col class="functions_name">
+</colgroup>
+<tbody>
+<tr>
+<td class="function_type">
+<span class="returnvalue">GList</span> *
+</td>
+<td class="function_name">
+<a class="link" href="NautilusMenuProvider.html#nautilus-menu-provider-get-file-items" title="nautilus_menu_provider_get_file_items ()">nautilus_menu_provider_get_file_items</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">GList</span> *
+</td>
+<td class="function_name">
+<a class="link" href="NautilusMenuProvider.html#nautilus-menu-provider-get-background-items" title="nautilus_menu_provider_get_background_items ()">nautilus_menu_provider_get_background_items</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="NautilusMenuProvider.html#nautilus-menu-provider-emit-items-updated-signal" title="nautilus_menu_provider_emit_items_updated_signal ()">nautilus_menu_provider_emit_items_updated_signal</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="NautilusMenuProvider.signals"></a><h2>Signals</h2>
+<div class="informaltable"><table class="informaltable" border="0">
+<colgroup>
+<col width="150px" class="signals_return">
+<col width="300px" class="signals_name">
+<col width="200px" class="signals_flags">
+</colgroup>
+<tbody><tr>
+<td class="signal_type"><span class="returnvalue">void</span></td>
+<td class="signal_name"><a class="link" href="NautilusMenuProvider.html#NautilusMenuProvider-items-updated" title="The “items-updated” signal">items-updated</a></td>
+<td class="signal_flags">Run Last</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="NautilusMenuProvider.other"></a><h2>Types and Values</h2>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="name">
+<col class="description">
+</colgroup>
+<tbody>
+<tr>
+<td class="datatype_keyword"> </td>
+<td class="function_name"><a class="link" href="NautilusMenuProvider.html#NautilusMenuProvider-struct" title="NautilusMenuProvider">NautilusMenuProvider</a></td>
+</tr>
+<tr>
+<td class="datatype_keyword">struct</td>
+<td class="function_name"><a class="link" href="NautilusMenuProvider.html#NautilusMenuProviderIface" title="struct NautilusMenuProviderIface">NautilusMenuProviderIface</a></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="NautilusMenuProvider.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="screen">    <a href="/home/csoriano/jhbuild/install/share/gtk-doc/html/gobject/GTypeModule.html">GInterface</a>
+    <span class="lineart">╰──</span> NautilusMenuProvider
+</pre>
+</div>
+<div class="refsect1">
+<a name="NautilusMenuProvider.prerequisites"></a><h2>Prerequisites</h2>
+<p>
+NautilusMenuProvider requires
+ GObject.</p>
+</div>
+<div class="refsect1">
+<a name="NautilusMenuProvider.includes"></a><h2>Includes</h2>
+<pre class="synopsis">#include &lt;libnautilus-extension/nautilus-menu-provider.h&gt;
+</pre>
+</div>
+<div class="refsect1">
+<a name="NautilusMenuProvider.description"></a><h2>Description</h2>
+<p><a class="link" href="NautilusMenuProvider.html" title="NautilusMenuProvider"><span class="type">NautilusMenuProvider</span></a> allows extension to provide additional menu items
+in the file manager menus.</p>
+</div>
+<div class="refsect1">
+<a name="NautilusMenuProvider.functions_details"></a><h2>Functions</h2>
+<div class="refsect2">
+<a name="nautilus-menu-provider-get-file-items"></a><h3>nautilus_menu_provider_get_file_items ()</h3>
+<pre class="programlisting"><span class="returnvalue">GList</span> *
+nautilus_menu_provider_get_file_items (<em class="parameter"><code><a class="link" href="NautilusMenuProvider.html" title="NautilusMenuProvider"><span class="type">NautilusMenuProvider</span></a> *provider</code></em>,
+                                       <em class="parameter"><code><span class="type">GtkWidget</span> *window</code></em>,
+                                       <em class="parameter"><code><span class="type">GList</span> *files</code></em>);</pre>
+<div class="refsect3">
+<a name="nautilus-menu-provider-get-file-items.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>provider</p></td>
+<td class="parameter_description"><p>a <a class="link" href="NautilusMenuProvider.html" title="NautilusMenuProvider"><span class="type">NautilusMenuProvider</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>window</p></td>
+<td class="parameter_description"><p>the parent <span class="type">GtkWidget</span> window</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>files</p></td>
+<td class="parameter_description"><p> a list of <a class="link" href="NautilusFileInfo.html" title="NautilusFileInfo"><span class="type">NautilusFileInfo</span></a>. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<a href="http://foldoc.org/element-type"><span class="acronym">element-type</span></a> NautilusFileInfo]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="nautilus-menu-provider-get-file-items.returns"></a><h4>Returns</h4>
+<p> the provided list of <a class="link" href="NautilusMenuItem.html" title="NautilusMenuItem"><span class="type">NautilusMenuItem</span></a>. </p>
+<p><span class="annotation">[<a href="http://foldoc.org/element-type"><span class="acronym">element-type</span></a> NautilusMenuItem][<a href="http://foldoc.org/transfer%20full"><span class="acronym">transfer full</span></a>]</span></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="nautilus-menu-provider-get-background-items"></a><h3>nautilus_menu_provider_get_background_items ()</h3>
+<pre class="programlisting"><span class="returnvalue">GList</span> *
+nautilus_menu_provider_get_background_items
+                               (<em class="parameter"><code><a class="link" href="NautilusMenuProvider.html" title="NautilusMenuProvider"><span class="type">NautilusMenuProvider</span></a> *provider</code></em>,
+                                <em class="parameter"><code><span class="type">GtkWidget</span> *window</code></em>,
+                                <em class="parameter"><code><a class="link" href="NautilusFileInfo.html" title="NautilusFileInfo"><span class="type">NautilusFileInfo</span></a> *current_folder</code></em>);</pre>
+<div class="refsect3">
+<a name="nautilus-menu-provider-get-background-items.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>provider</p></td>
+<td class="parameter_description"><p>a <a class="link" href="NautilusMenuProvider.html" title="NautilusMenuProvider"><span class="type">NautilusMenuProvider</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>window</p></td>
+<td class="parameter_description"><p>the parent <span class="type">GtkWidget</span> window</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>current_folder</p></td>
+<td class="parameter_description"><p>the folder for which background items are requested</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="nautilus-menu-provider-get-background-items.returns"></a><h4>Returns</h4>
+<p> the provided list of <a class="link" href="NautilusMenuItem.html" title="NautilusMenuItem"><span class="type">NautilusMenuItem</span></a>. </p>
+<p><span class="annotation">[<a href="http://foldoc.org/element-type"><span class="acronym">element-type</span></a> NautilusMenuItem][<a href="http://foldoc.org/transfer%20full"><span class="acronym">transfer full</span></a>]</span></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="nautilus-menu-provider-emit-items-updated-signal"></a><h3>nautilus_menu_provider_emit_items_updated_signal ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+nautilus_menu_provider_emit_items_updated_signal
+                               (<em class="parameter"><code><a class="link" href="NautilusMenuProvider.html" title="NautilusMenuProvider"><span class="type">NautilusMenuProvider</span></a> *provider</code></em>);</pre>
+</div>
+</div>
+<div class="refsect1">
+<a name="NautilusMenuProvider.other_details"></a><h2>Types and Values</h2>
+<div class="refsect2">
+<a name="NautilusMenuProvider-struct"></a><h3>NautilusMenuProvider</h3>
+<pre class="programlisting">typedef struct _NautilusMenuProvider NautilusMenuProvider;</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="NautilusMenuProviderIface"></a><h3>struct NautilusMenuProviderIface</h3>
+<pre class="programlisting">struct NautilusMenuProviderIface {
+	GTypeInterface g_iface;
+
+	GList *(*get_file_items)       (NautilusMenuProvider *provider,
+					GtkWidget            *window,
+					GList                *files);
+	GList *(*get_background_items) (NautilusMenuProvider *provider,
+					GtkWidget            *window,
+					NautilusFileInfo     *current_folder);
+};
+</pre>
+<p>Interface for extensions to provide additional menu items.</p>
+<div class="refsect3">
+<a name="NautilusMenuProviderIface.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="struct_members_name">
+<col class="struct_members_description">
+<col width="200px" class="struct_members_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="NautilusMenuProviderIface.get-file-items"></a>get_file_items</code></em> ()</p></td>
+<td class="struct_member_description"><p>Returns a <span class="type">GList</span> of <a class="link" href="NautilusMenuItem.html" title="NautilusMenuItem"><span class="type">NautilusMenuItem</span></a>.
+See <a class="link" href="NautilusMenuProvider.html#nautilus-menu-provider-get-file-items" title="nautilus_menu_provider_get_file_items ()"><code class="function">nautilus_menu_provider_get_file_items()</code></a> for details.</p></td>
+<td class="struct_member_annotations"> </td>
+</tr>
+<tr>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="NautilusMenuProviderIface.get-background-items"></a>get_background_items</code></em> ()</p></td>
+<td class="struct_member_description"><p>Returns a <span class="type">GList</span> of <a class="link" href="NautilusMenuItem.html" title="NautilusMenuItem"><span class="type">NautilusMenuItem</span></a>.
+See <a class="link" href="NautilusMenuProvider.html#nautilus-menu-provider-get-background-items" title="nautilus_menu_provider_get_background_items ()"><code class="function">nautilus_menu_provider_get_background_items()</code></a> for details.</p></td>
+<td class="struct_member_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="refsect1">
+<a name="NautilusMenuProvider.signal-details"></a><h2>Signal Details</h2>
+<div class="refsect2">
+<a name="NautilusMenuProvider-items-updated"></a><h3>The <code class="literal">“items-updated”</code> signal</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+user_function (<a class="link" href="NautilusMenuProvider.html" title="NautilusMenuProvider"><span class="type">NautilusMenuProvider</span></a> *nautilusmenuprovider,
+               <span class="type">gpointer</span>              user_data)</pre>
+<p>Flags: Run Last</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>Generated by GTK-Doc V1.25.1</div>
+</body>
+</html>
