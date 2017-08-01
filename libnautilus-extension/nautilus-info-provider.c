@@ -72,6 +72,19 @@ nautilus_info_provider_get_type (void)
     return type;
 }
 
+gboolean
+nautilus_info_provider_file_open (NautilusInfoProvider   *provider,
+                                  NautilusFileInfo       *file)
+{
+    /* Let file open call happen if issue with provider */
+    g_return_val_if_fail (NAUTILUS_IS_INFO_PROVIDER (provider),
+                          TRUE);
+    g_return_val_if_fail (NAUTILUS_INFO_PROVIDER_GET_IFACE (provider)->file_open != NULL,
+                          TRUE);
+    return NAUTILUS_INFO_PROVIDER_GET_IFACE (provider)->file_open
+               (provider, file);
+}
+
 NautilusOperationResult
 nautilus_info_provider_update_file_info (NautilusInfoProvider     *provider,
                                          NautilusFileInfo         *file,

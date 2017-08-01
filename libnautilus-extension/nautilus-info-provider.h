@@ -50,6 +50,8 @@ typedef void (*NautilusInfoProviderUpdateComplete) (NautilusInfoProvider    *pro
 /**
  * NautilusInfoProviderIface:
  * @g_iface: The parent interface.
+ * @file_open: Called when a file is opened.
+ *   See nautilus_info_provider_file_open for details.
  * @update_file_info: Returns a #NautilusOperationResult.
  *   See nautilus_info_provider_update_file_info() for details.
  * @cancel_update: Cancels a previous call to nautilus_info_provider_update_file_info().
@@ -60,6 +62,8 @@ typedef void (*NautilusInfoProviderUpdateComplete) (NautilusInfoProvider    *pro
 struct _NautilusInfoProviderIface {
 	GTypeInterface g_iface;
 
+    gboolean                (*file_open)        (NautilusInfoProvider     *provider,
+                             NautilusFileInfo   	  *file);
 	NautilusOperationResult (*update_file_info) (NautilusInfoProvider     *provider,
 						     NautilusFileInfo         *file,
 						     GClosure                 *update_complete,
@@ -70,6 +74,8 @@ struct _NautilusInfoProviderIface {
 
 /* Interface Functions */
 GType                   nautilus_info_provider_get_type               (void);
+gboolean                nautilus_info_provider_file_open              (NautilusInfoProvider     *provider,
+                                                                       NautilusFileInfo         *file);
 NautilusOperationResult nautilus_info_provider_update_file_info       (NautilusInfoProvider     *provider,
 								       NautilusFileInfo         *file,
 								       GClosure                 *update_complete,

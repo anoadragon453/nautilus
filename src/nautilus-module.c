@@ -285,6 +285,12 @@ nautilus_module_get_extensions_for_type (GType type)
 }
 
 void
+nautilus_module_workaround(GList **ptr, GType type)
+{
+	*ptr = nautilus_module_get_extensions_for_type(type);
+}
+
+void
 nautilus_module_extension_list_free (GList *extensions)
 {
     GList *l, *next;

@@ -35,6 +35,7 @@
 #include <string.h>
 #include <gdk/gdkx.h>
 
+#include "nautilus-directory-private.h"
 #include "nautilus-file-attributes.h"
 #include "nautilus-file.h"
 #include "nautilus-file-operations.h"
@@ -2433,10 +2434,12 @@ nautilus_mime_activate_files (GtkWindow               *parent_window,
 {
     ActivateParameters *parameters;
     char *file_name;
-    int file_count;
-    GList *l, *next;
+    int file_count, skip_file;
+    GList *l, *p, *next, *new_list;
+    GList *providers;
     NautilusFile *file;
     LaunchLocation *location;
+    NautilusInfoProvider *provider;
 
     if (files == NULL)
     {
@@ -2455,7 +2458,6 @@ nautilus_mime_activate_files (GtkWindow               *parent_window,
     }
     parameters->cancellable = g_cancellable_new ();
     parameters->activation_directory = g_strdup (launch_directory);
-    parameters->locations = launch_locations_from_file_list (files);
     parameters->flags = flags;
     parameters->user_confirmation = user_confirmation;
 
@@ -2474,12 +2476,45 @@ nautilus_mime_activate_files (GtkWindow               *parent_window,
                                                          file_count);
     }
 
+    nautilus_module_workaround (&providers, NAUTILUS_TYPE_INFO_PROVIDER);
+    new_list = NULL;
 
-    for (l = parameters->locations; l != NULL; l = next)
+    for (l = launch_locations_from_file_list (files); l != NULL; l = next)
     {
         location = l->data;
         file = location->file;
         next = l->next;
+        skip_file = FALSE;
+
+        /**Loop through each provider and allow them to vote 
+         * on whether to open each file
+         *
+         **/
+        for (p = providers; p != NULL; p = p->next)
+        {
+            provider = NAUTILUS_INFO_PROVIDER (p->data);
+
+            /* Ask extensions whether this file should be opened */
+            if (!nautilus_file_is_directory (file) &&
+                nautilus_info_provider_file_open (provider,
+                    NAUTILUS_FILE_INFO (file)) == FALSE)
+            {
+                /* An extension blocked the request. 
+                 * Don't add this file to the locations list.
+                 **/
+                file_count--;
+                skip_file = TRUE;
+                break;
+            }
+        }
+
+        if (skip_file == TRUE)
+        {
+            continue;
+        }
+
+        /* Add this file to the locations list */
+        new_list = g_list_prepend(new_list, file);
 
         if (nautilus_file_can_mount (file))
         {
@@ -2493,6 +2528,10 @@ nautilus_mime_activate_files (GtkWindow               *parent_window,
                                                            nautilus_file_ref (file));
         }
     }
+
+    parameters->locations = launch_locations_from_file_list (new_list);
+
+    nautilus_module_extension_list_free (providers);
 
     activation_start_timed_cancel (parameters);
     if (parameters->mountables != NULL)
