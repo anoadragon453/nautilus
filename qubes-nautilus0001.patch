@@ -1,0 +1,186 @@
+commit 11eefc777ae97f484dc338bb785fd03b509be850
+Author: Andrew (anoa) <anoa@openmailbox.org>
+Date:   Tue Aug 1 00:53:58 2017 -0700
+
+    Add file_open extension method
+    
+    Adds the ability for extensions to know when a file is being opened and
+    can veto the action if necessary.
+
+diff --git a/docs/reference/libnautilus-extension/libnautilus-extension-sections.txt b/docs/reference/libnautilus-extension/libnautilus-extension-sections.txt
+index ea216d3..a11b3b6 100644
+--- a/docs/reference/libnautilus-extension/libnautilus-extension-sections.txt
++++ b/docs/reference/libnautilus-extension/libnautilus-extension-sections.txt
+@@ -148,6 +148,7 @@ NautilusInfoProviderIface
+ NautilusInfoProviderUpdateComplete
+ NautilusOperationHandle
+ NautilusOperationResult
++nautilus_info_provider_file_open
+ nautilus_info_provider_update_file_info
+ nautilus_info_provider_cancel_update
+ nautilus_info_provider_update_complete_invoke
+diff --git a/libnautilus-extension/nautilus-info-provider.c b/libnautilus-extension/nautilus-info-provider.c
+index 359bf8e..48ea97b 100644
+--- a/libnautilus-extension/nautilus-info-provider.c
++++ b/libnautilus-extension/nautilus-info-provider.c
+@@ -72,6 +72,19 @@ nautilus_info_provider_get_type (void)
+     return type;
+ }
+ 
++gboolean
++nautilus_info_provider_file_open (NautilusInfoProvider   *provider,
++                                  NautilusFileInfo       *file)
++{
++    /* Let file open call happen if issue with provider */
++    g_return_val_if_fail (NAUTILUS_IS_INFO_PROVIDER (provider),
++                          TRUE);
++    g_return_val_if_fail (NAUTILUS_INFO_PROVIDER_GET_IFACE (provider)->file_open != NULL,
++                          TRUE);
++    return NAUTILUS_INFO_PROVIDER_GET_IFACE (provider)->file_open
++               (provider, file);
++}
++
+ NautilusOperationResult
+ nautilus_info_provider_update_file_info (NautilusInfoProvider     *provider,
+                                          NautilusFileInfo         *file,
+diff --git a/libnautilus-extension/nautilus-info-provider.h b/libnautilus-extension/nautilus-info-provider.h
+index 6d70887..5540bd1 100644
+--- a/libnautilus-extension/nautilus-info-provider.h
++++ b/libnautilus-extension/nautilus-info-provider.h
+@@ -50,6 +50,8 @@ typedef void (*NautilusInfoProviderUpdateComplete) (NautilusInfoProvider    *pro
+ /**
+  * NautilusInfoProviderIface:
+  * @g_iface: The parent interface.
++ * @file_open: Called when a file is opened.
++ *   See nautilus_info_provider_file_open for details.
+  * @update_file_info: Returns a #NautilusOperationResult.
+  *   See nautilus_info_provider_update_file_info() for details.
+  * @cancel_update: Cancels a previous call to nautilus_info_provider_update_file_info().
+@@ -60,6 +62,8 @@ typedef void (*NautilusInfoProviderUpdateComplete) (NautilusInfoProvider    *pro
+ struct _NautilusInfoProviderIface {
+ 	GTypeInterface g_iface;
+ 
++    gboolean                (*file_open)        (NautilusInfoProvider     *provider,
++                             NautilusFileInfo   	  *file);
+ 	NautilusOperationResult (*update_file_info) (NautilusInfoProvider     *provider,
+ 						     NautilusFileInfo         *file,
+ 						     GClosure                 *update_complete,
+@@ -70,6 +74,8 @@ struct _NautilusInfoProviderIface {
+ 
+ /* Interface Functions */
+ GType                   nautilus_info_provider_get_type               (void);
++gboolean                nautilus_info_provider_file_open              (NautilusInfoProvider     *provider,
++                                                                       NautilusFileInfo         *file);
+ NautilusOperationResult nautilus_info_provider_update_file_info       (NautilusInfoProvider     *provider,
+ 								       NautilusFileInfo         *file,
+ 								       GClosure                 *update_complete,
+diff --git a/src/nautilus-mime-actions.c b/src/nautilus-mime-actions.c
+index 3f7033b..a200d4a 100644
+--- a/src/nautilus-mime-actions.c
++++ b/src/nautilus-mime-actions.c
+@@ -35,6 +35,7 @@
+ #include <string.h>
+ #include <gdk/gdkx.h>
+ 
++#include "nautilus-directory-private.h"
+ #include "nautilus-file-attributes.h"
+ #include "nautilus-file.h"
+ #include "nautilus-file-operations.h"
+@@ -2433,10 +2434,12 @@ nautilus_mime_activate_files (GtkWindow               *parent_window,
+ {
+     ActivateParameters *parameters;
+     char *file_name;
+-    int file_count;
+-    GList *l, *next;
++    int file_count, skip_file;
++    GList *l, *p, *next, *new_list;
++    GList *providers;
+     NautilusFile *file;
+     LaunchLocation *location;
++    NautilusInfoProvider *provider;
+ 
+     if (files == NULL)
+     {
+@@ -2455,7 +2458,6 @@ nautilus_mime_activate_files (GtkWindow               *parent_window,
+     }
+     parameters->cancellable = g_cancellable_new ();
+     parameters->activation_directory = g_strdup (launch_directory);
+-    parameters->locations = launch_locations_from_file_list (files);
+     parameters->flags = flags;
+     parameters->user_confirmation = user_confirmation;
+ 
+@@ -2474,12 +2476,45 @@ nautilus_mime_activate_files (GtkWindow               *parent_window,
+                                                          file_count);
+     }
+ 
++    nautilus_module_workaround (&providers, NAUTILUS_TYPE_INFO_PROVIDER);
++    new_list = NULL;
+ 
+-    for (l = parameters->locations; l != NULL; l = next)
++    for (l = launch_locations_from_file_list (files); l != NULL; l = next)
+     {
+         location = l->data;
+         file = location->file;
+         next = l->next;
++        skip_file = FALSE;
++
++        /**Loop through each provider and allow them to vote
++         * on whether to open each file
++         *
++         **/
++        for (p = providers; p != NULL; p = p->next)
++        {
++            provider = NAUTILUS_INFO_PROVIDER (p->data);
++
++            /* Ask extensions whether this file should be opened */
++            if (!nautilus_file_is_directory (file) &&
++                nautilus_info_provider_file_open (provider,
++                    NAUTILUS_FILE_INFO (file)) == FALSE)
++            {
++                /* An extension blocked the request.
++                 * Don't add this file to the locations list.
++                 **/
++                file_count--;
++                skip_file = TRUE;
++                break;
++            }
++        }
++
++        if (skip_file == TRUE)
++        {
++            continue;
++        }
++
++        /* Add this file to the locations list */
++        new_list = g_list_prepend(new_list, file);
+ 
+         if (nautilus_file_can_mount (file))
+         {
+@@ -2494,6 +2529,10 @@ nautilus_mime_activate_files (GtkWindow               *parent_window,
+         }
+     }
+ 
++    parameters->locations = launch_locations_from_file_list (new_list);
++
++    nautilus_module_extension_list_free (providers);
++
+     activation_start_timed_cancel (parameters);
+     if (parameters->mountables != NULL)
+     {
+diff --git a/src/nautilus-module.c b/src/nautilus-module.c
+index bf474bd..c39a010 100644
+--- a/src/nautilus-module.c
++++ b/src/nautilus-module.c
+@@ -285,6 +285,12 @@ nautilus_module_get_extensions_for_type (GType type)
+ }
+ 
+ void
++nautilus_module_workaround(GList **ptr, GType type)
++{
++	*ptr = nautilus_module_get_extensions_for_type(type);
++}
++
++void
+ nautilus_module_extension_list_free (GList *extensions)
+ {
+     GList *l, *next;
